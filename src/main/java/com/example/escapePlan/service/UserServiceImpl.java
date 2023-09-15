@@ -2,18 +2,30 @@ package com.example.escapePlan.service;
 
 import com.example.escapePlan.dao.UserDao;
 import com.example.escapePlan.dto.UserDto;
+import com.example.escapePlan.model.Role;
 import com.example.escapePlan.model.User;
+import com.example.escapePlan.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserDao userDao;
-    public UserServiceImpl(UserDao userDao)
+    private final UserRepository userRepository;
+    private final PasswordEncoder encoder;
+    public UserServiceImpl(UserDao userDao, PasswordEncoder encoder, UserRepository userRepository)
     {
         super();
         this.userDao = userDao;
+        this.encoder = encoder;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -44,6 +56,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteAllUsers() {
         userDao.showAllUsers();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println(username);
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("user is not valid"));
     }
     /*
     @Override
