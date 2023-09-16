@@ -1,6 +1,7 @@
 package com.example.escapePlan.service;
 
 import com.example.escapePlan.dto.LoginResponseDto;
+import com.example.escapePlan.dto.UserDto;
 import com.example.escapePlan.model.Role;
 import com.example.escapePlan.model.User;
 import com.example.escapePlan.repository.RoleRepository;
@@ -37,7 +38,7 @@ public class AuthenticationService {
     }
 
     public User registerUser(String username, String password) {
-        if(userRepository.findByUsername(username).isPresent()) return null;
+        if (userRepository.findByUsername(username).isPresent()) return null;
         String encodedPassword = encoder.encode(password);
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByAuthority("USER").get();
@@ -47,11 +48,20 @@ public class AuthenticationService {
         return userRepository.save(user);
     }
 
-    public LoginResponseDto loginUser(String username, String password){
-        Authentication auth = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username,password));
-        String token = tokenService.generateJwt(auth);
-        return new LoginResponseDto(userRepository.findByUsername(username).get(),token);
+    public LoginResponseDto loginUser(String username, String password) {
 
+        try {
+            Authentication auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username, password)
+            );
+
+            String token = tokenService.generateJwt(auth);
+
+            return new LoginResponseDto(userRepository.findByUsername(username).get(), token);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new LoginResponseDto(new UserDto(), "");
+        }
     }
 }
