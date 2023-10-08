@@ -1,4 +1,4 @@
-package com.example.escapePlan.api;
+package com.example.escapePlan.api.admin;
 
 import com.example.escapePlan.dto.UserDto;
 import com.example.escapePlan.model.User;

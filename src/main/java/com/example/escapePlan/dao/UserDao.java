@@ -26,7 +26,7 @@ public class UserDao {
 
     @Transactional
     public User addUser(UserDto newUserDto) {
-        User newUser = new User(newUserDto.getEmail(), newUserDto.getUsername(), newUserDto.getPassword());
+        User newUser = new User(newUserDto.getEmail(), newUserDto.getUsername(), newUserDto.getPassword(), newUserDto.getAddress());
         return userRepository.save(newUser);
     }
 

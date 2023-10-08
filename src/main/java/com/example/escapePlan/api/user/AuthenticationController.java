@@ -1,4 +1,4 @@
-package com.example.escapePlan.api;
+package com.example.escapePlan.api.user;
 
 import com.example.escapePlan.dto.LoginResponseDto;
 import com.example.escapePlan.dto.UserDto;
@@ -17,7 +17,7 @@ public class AuthenticationController {
     }
     @PostMapping("/register")
     public User registerUser(@RequestBody UserDto userDto){
-        return authService.registerUser(userDto.getUsername(), userDto.getPassword());
+        return authService.registerUser(userDto.getEmail(),userDto.getUsername(), userDto.getPassword(), userDto.getAddress());
     }
 
     @PostMapping("/login")

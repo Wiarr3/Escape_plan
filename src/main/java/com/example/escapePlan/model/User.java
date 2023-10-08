@@ -50,11 +50,12 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<TripPlan> tripPlans;
 
-    public User(String email,String username, String password) {
+    public User(String email,String username, String password, String address) {
         super();
         this.email = email;
         this.username = username;
         this.password = password;
+        this.address = address;
         this.authorities = new HashSet<>();
     }
 

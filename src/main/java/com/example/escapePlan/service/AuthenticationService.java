@@ -10,6 +10,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +39,13 @@ public class AuthenticationService {
         this.tokenService = tokenService;
     }
 
-    public User registerUser(String username, String password) {
+    public User registerUser(String email, String username, String password, String address) {
         if (userRepository.findByUsername(username).isPresent()) return null;
         String encodedPassword = encoder.encode(password);
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByAuthority("USER").get();
         roles.add(userRole);
-        User user = new User(username, encodedPassword);
+        User user = new User(email, username, encodedPassword, address);
         user.setAuthorities(roles);
         return userRepository.save(user);
     }
@@ -64,4 +66,18 @@ public class AuthenticationService {
             return new LoginResponseDto(new UserDto(), "");
         }
     }
+
+    public Long getCurrentId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            User user = userRepository.findByUsername(authentication.getName()).orElseThrow();
+            return user.getId();
+        } else
+            throw new IllegalStateException();
+    }
+
+
 }
+
+
+
