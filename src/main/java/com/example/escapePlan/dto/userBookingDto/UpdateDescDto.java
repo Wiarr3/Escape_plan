@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ChangeDesc {
+public class UpdateDescDto {
     private String desc;
     private Long id;
 }

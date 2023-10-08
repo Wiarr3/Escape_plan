@@ -1,6 +1,6 @@
 package com.example.escapePlan.dao;
 
-import com.example.escapePlan.dto.TripPlanDto;
+import com.example.escapePlan.dto.userPlanDto.TripPlanDto;
 import com.example.escapePlan.model.TripPlan;
 import com.example.escapePlan.repository.PlanRepository;
 import com.example.escapePlan.repository.UserRepository;

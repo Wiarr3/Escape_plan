@@ -40,4 +40,7 @@ public class BookingOption {
         setStatus(dto.getStatus());
         setTripPlan(plan);
     }
+    public BookingOptionDto createDto(){
+        return new BookingOptionDto(status,address,weather,price,contact,tripPlan.getId());
+    }
 }

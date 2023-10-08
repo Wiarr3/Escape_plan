@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ChangePrice {
-    private Integer price;
+public class UpdateAddressDto {
+    private String address;
     private Long id;
 }

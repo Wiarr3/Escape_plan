@@ -77,6 +77,9 @@ public class User implements UserDetails {
         setAddress(dto.getAddress());
         setUsername(dto.getUsername());
     }
+    public UserDto createDto(){
+        return new UserDto(email,username,password,address);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

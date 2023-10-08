@@ -1,4 +1,4 @@
-package com.example.escapePlan.dto.userBookingDto;
+package com.example.escapePlan.dto.userPlanDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ChangeWeather {
-    private String weather;
+public class DeletePlanDto {
     private Long id;
 }

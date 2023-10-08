@@ -1,9 +1,8 @@
 package com.example.escapePlan.api.admin;
 
-import com.example.escapePlan.dto.TripPlanDto;
+import com.example.escapePlan.dto.userPlanDto.TripPlanDto;
 import com.example.escapePlan.model.TripPlan;
 import com.example.escapePlan.service.TripPlanService;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

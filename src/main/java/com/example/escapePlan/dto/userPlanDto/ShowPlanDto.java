@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
-public class ChangeNameDto {
-    private String name;
+public class ShowPlanDto {
     private Long id;
 }

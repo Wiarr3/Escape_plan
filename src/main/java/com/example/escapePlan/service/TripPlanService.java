@@ -1,6 +1,6 @@
 package com.example.escapePlan.service;
 
-import com.example.escapePlan.dto.TripPlanDto;
+import com.example.escapePlan.dto.userPlanDto.TripPlanDto;
 import com.example.escapePlan.model.TripPlan;
 
 import java.util.List;

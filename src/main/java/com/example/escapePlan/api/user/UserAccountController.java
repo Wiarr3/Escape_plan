@@ -1,8 +1,8 @@
 package com.example.escapePlan.api.user;
 
-import com.example.escapePlan.dto.userAccountDto.ChangeAddressDto;
-import com.example.escapePlan.dto.userAccountDto.ChangeEmailDto;
-import com.example.escapePlan.dto.userAccountDto.ChangePasswordDto;
+import com.example.escapePlan.dto.userAccountDto.UpdateAddressDto;
+import com.example.escapePlan.dto.userAccountDto.UpdateEmailDto;
+import com.example.escapePlan.dto.userAccountDto.UpdatePasswordDto;
 import com.example.escapePlan.service.AuthenticationService;
 import com.example.escapePlan.service.customer.UserAccountService;
 import org.springframework.web.bind.annotation.*;
@@ -20,22 +20,19 @@ public class UserAccountController {
    }
 
     @PatchMapping("/password")
-    public ChangePasswordDto updatePassword(@RequestBody ChangePasswordDto changePasswordDto){
-        return accountService.changePassword(authService.getCurrentId(),changePasswordDto);
+    public UpdatePasswordDto updatePassword(@RequestBody UpdatePasswordDto updatePasswordDto){
+        return accountService.changePassword(authService.getCurrentId(), updatePasswordDto);
     }
 
     @PatchMapping("/address")
-    public ChangeAddressDto updateAddress(@RequestBody ChangeAddressDto changeAddressDto){
-       return accountService.changeAddress(authService.getCurrentId(),changeAddressDto);
+    public UpdateAddressDto updateAddress(@RequestBody UpdateAddressDto updateAddressDto){
+       return accountService.changeAddress(authService.getCurrentId(), updateAddressDto);
     }
 
     @PatchMapping("/email")
-    public ChangeEmailDto updateEmail(@RequestBody ChangeEmailDto changeEmailDto){
+    public UpdateEmailDto updateEmail(@RequestBody UpdateEmailDto updateEmailDto){
        System.out.println(authService.getCurrentId());
-       return accountService.changeEmail(authService.getCurrentId(),changeEmailDto);
+       return accountService.changeEmail(authService.getCurrentId(), updateEmailDto);
     }
-    @GetMapping("/id")
-    public Long getUserId(){
-       return authService.getCurrentId();
-    }
+
 }

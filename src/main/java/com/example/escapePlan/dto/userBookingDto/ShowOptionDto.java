@@ -1,6 +1,5 @@
 package com.example.escapePlan.dto.userBookingDto;
 
-import com.example.escapePlan.utills.OptionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ChangeStatus {
-    private OptionStatus status;
+public class ShowOptionDto {
     private Long id;
 }

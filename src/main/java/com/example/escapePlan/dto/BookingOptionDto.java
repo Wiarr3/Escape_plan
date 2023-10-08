@@ -4,11 +4,13 @@ import com.example.escapePlan.utills.OptionStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class BookingOptionDto {
 
     private OptionStatus status;

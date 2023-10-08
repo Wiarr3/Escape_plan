@@ -1,14 +1,13 @@
 package com.example.escapePlan.dto.userPlanDto;
 
-import com.example.escapePlan.utills.PlanStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
-public class ChangeStatusDto {
-    private PlanStatus status;
+public class UpdateNameDto {
+    private String name;
     private Long id;
 }

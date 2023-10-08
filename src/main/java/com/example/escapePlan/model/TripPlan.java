@@ -1,9 +1,8 @@
 package com.example.escapePlan.model;
 
-import com.example.escapePlan.dto.TripPlanDto;
+import com.example.escapePlan.dto.userPlanDto.TripPlanDto;
 import com.example.escapePlan.utills.PlanStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -45,6 +44,10 @@ public class TripPlan {
         setName(dto.getName());
         setDescription(dto.getDescription());
         setUser(user);
+    }
+
+    public TripPlanDto createDto(){
+        return new TripPlanDto(status,name,description,user.getId());
     }
 
 }

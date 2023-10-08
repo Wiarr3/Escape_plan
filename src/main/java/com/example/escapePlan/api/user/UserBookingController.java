@@ -2,7 +2,7 @@ package com.example.escapePlan.api.user;
 
 import com.example.escapePlan.dto.BookingOptionDto;
 import com.example.escapePlan.dto.userBookingDto.*;
-import com.example.escapePlan.utills.OptionStatus;
+import com.example.escapePlan.service.customer.UserBookingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,46 +11,52 @@ import java.util.List;
 @RequestMapping("/user/booking")
 public class UserBookingController {
 
+    private final UserBookingService userBookingService;
+
+    public UserBookingController(UserBookingService userBookingService){
+        this.userBookingService = userBookingService;
+    }
+
     @GetMapping("/show")
-    public BookingOptionDto showBooking(@RequestBody Long id){
-        return null;
+    public BookingOptionDto showBooking(@RequestBody ShowOptionDto id){
+        return userBookingService.showOption(id.getId());
     }
 
     @GetMapping("/show/all")
     public List<BookingOptionDto> showAllOptions(@RequestBody Long planId){
-        return null;
+        return userBookingService.showAllOptions(planId);
     }
 
     @PostMapping("/add")
     public BookingOptionDto addBooking(@RequestBody BookingOptionDto dto){
-        return null;
+        return userBookingService.addOption(dto);
     }
 
     @PatchMapping("/price")
-    public Integer changePrice(@RequestBody ChangePrice changePrice){
-        return null;
+    public UpdatePriceDto changePrice(@RequestBody UpdatePriceDto updatePriceDto){
+        return userBookingService.updatePrice(updatePriceDto);
     }
     @PatchMapping("/address")
-    public String changeAddress(@RequestBody ChangeAddress changeAddress){
-        return null;
+    public UpdateAddressDto changeAddress(@RequestBody UpdateAddressDto updateAddressDto){
+        return userBookingService.updateAddress(updateAddressDto);
     }
     @PatchMapping("/status")
-    public OptionStatus changeStatus(@RequestBody ChangeStatus changeStatus){
-        return null;
+    public UpdateStatusDto changeStatus(@RequestBody UpdateStatusDto updateStatusDto){
+        return userBookingService.updateStatus(updateStatusDto);
     }
 
     @PatchMapping("/weather")
-    public String changeWeather(@RequestBody ChangeWeather changeWeather){
-        return null;
+    public UpdateWeatherDto changeWeather(@RequestBody UpdateWeatherDto updateWeatherDto){
+        return userBookingService.updateWeather(updateWeatherDto);
     }
 
     @PatchMapping("/contact")
-    public String changeContact(@RequestBody ChangeContact changeContact){
-        return null;
+    public UpdateContactDto changeContact(@RequestBody UpdateContactDto updateContactDto){
+        return userBookingService.updateContact(updateContactDto);
     }
 
     @DeleteMapping("/delete")
-    public void deleteOption(@RequestBody Long id){
-
+    public void deleteOption(@RequestBody DeleteOptionDto id){
+        userBookingService.deleteOption(id.getId());
     }
 }
