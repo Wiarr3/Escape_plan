@@ -1,9 +1,9 @@
 package com.example.escapePlan.api.user;
 
 import com.example.escapePlan.dto.LoginResponseDto;
-import com.example.escapePlan.dto.UserDto;
+import com.example.escapePlan.dto.userAccountDto.UserDto;
 import com.example.escapePlan.model.User;
-import com.example.escapePlan.service.AuthenticationService;
+import com.example.escapePlan.service.customer.AuthenticationService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +17,7 @@ public class AuthenticationController {
     }
     @PostMapping("/register")
     public User registerUser(@RequestBody UserDto userDto){
-        return authService.registerUser(userDto.getEmail(),userDto.getUsername(), userDto.getPassword(), userDto.getAddress());
+        return authService.registerUser(userDto.getEmail(),userDto.getUsername(), userDto.getPassword());
     }
 
     @PostMapping("/login")

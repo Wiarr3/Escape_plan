@@ -1,8 +1,8 @@
 package com.example.escapePlan.api.admin;
 
-import com.example.escapePlan.dto.UserDto;
+import com.example.escapePlan.dto.userAccountDto.UserDto;
 import com.example.escapePlan.model.User;
-import com.example.escapePlan.service.UserService;
+import com.example.escapePlan.service.admin.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

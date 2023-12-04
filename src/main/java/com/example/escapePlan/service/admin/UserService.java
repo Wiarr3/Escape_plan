@@ -1,7 +1,6 @@
-package com.example.escapePlan.service;
+package com.example.escapePlan.service.admin;
 
-import com.example.escapePlan.dao.UserDao;
-import com.example.escapePlan.dto.UserDto;
+import com.example.escapePlan.dto.userAccountDto.UserDto;
 import com.example.escapePlan.model.User;
 
 import java.util.List;

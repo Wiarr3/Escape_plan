@@ -1,35 +1,35 @@
-package com.example.escapePlan.service;
+package com.example.escapePlan.service.admin;
 
 import com.example.escapePlan.dao.BookingOptionDao;
-import com.example.escapePlan.dto.BookingOptionDto;
-import com.example.escapePlan.model.BookingOption;
+import com.example.escapePlan.dto.userBookingDto.BookingDto;
+import com.example.escapePlan.model.Booking;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class BookingOptionServiceImpl implements BookingOptionService{
+public class BookingServiceImpl implements BookingService {
     private final BookingOptionDao bookingOptionDao;
 
-    public BookingOptionServiceImpl(BookingOptionDao bookingOptionDao){
+    public BookingServiceImpl(BookingOptionDao bookingOptionDao){
         this.bookingOptionDao = bookingOptionDao;
     }
     @Override
-    public BookingOption addOption(BookingOptionDto dto) {
+    public Booking addOption(BookingDto dto) {
         return bookingOptionDao.addOption(dto);
     }
 
     @Override
-    public BookingOption updateOption(Long id, BookingOptionDto dto) {
+    public Booking updateOption(Long id, BookingDto dto) {
         return bookingOptionDao.updateOption(id,dto);
     }
 
     @Override
-    public List<BookingOption> showAllOptions() {
+    public List<Booking> showAllOptions() {
         return bookingOptionDao.showAllOptions();
     }
 
     @Override
-    public BookingOption showOption(Long id) {
+    public Booking showOption(Long id) {
         return bookingOptionDao.showOption(id);
     }
 

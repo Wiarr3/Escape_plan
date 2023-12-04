@@ -1,4 +1,4 @@
-package com.example.escapePlan.dto;
+package com.example.escapePlan.dto.userAccountDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,5 +14,5 @@ public class UserDto {
     private String email;
     private String username;
     private String password;
-    private String address;
+
 }

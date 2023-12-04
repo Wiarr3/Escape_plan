@@ -1,6 +1,6 @@
 package com.example.escapePlan.dao;
 
-import com.example.escapePlan.dto.UserDto;
+import com.example.escapePlan.dto.userAccountDto.UserDto;
 import com.example.escapePlan.model.User;
 import com.example.escapePlan.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -26,7 +26,7 @@ public class UserDao {
 
     @Transactional
     public User addUser(UserDto newUserDto) {
-        User newUser = new User(newUserDto.getEmail(), newUserDto.getUsername(), newUserDto.getPassword(), newUserDto.getAddress());
+        User newUser = new User(newUserDto.getEmail(), newUserDto.getUsername(), newUserDto.getPassword());
         return userRepository.save(newUser);
     }
 

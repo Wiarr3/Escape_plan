@@ -1,10 +1,8 @@
 package com.example.escapePlan.model;
 
-import com.example.escapePlan.dto.UserDto;
+import com.example.escapePlan.dto.userAccountDto.UserDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,8 +28,6 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "address")
-    private String address;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -41,21 +37,15 @@ public class User implements UserDetails {
     )
     private Set<Role> authorities;
 
-    /*
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Address> addresses;
-
-     */
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<TripPlan> tripPlans;
+    private Set<Plan> plans;
 
-    public User(String email,String username, String password, String address) {
+    public User(String email,String username, String password) {
         super();
         this.email = email;
         this.username = username;
         this.password = password;
-        this.address = address;
         this.authorities = new HashSet<>();
     }
 
@@ -74,11 +64,10 @@ public class User implements UserDetails {
     public void copyFromDto(UserDto dto) {
         setPassword(dto.getPassword());
         setEmail(dto.getEmail());
-        setAddress(dto.getAddress());
         setUsername(dto.getUsername());
     }
     public UserDto createDto(){
-        return new UserDto(email,username,password,address);
+        return new UserDto(email,username,password);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.example.escapePlan.utills;
 
-public enum OptionStatus {
+public enum BookingStatus {
     WAITING_FOR_ANSWER,
     NEGOTIABLE,
     UNSENT,

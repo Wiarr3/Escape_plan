@@ -1,7 +1,7 @@
 package com.example.escapePlan.dao;
 
-import com.example.escapePlan.dto.userPlanDto.TripPlanDto;
-import com.example.escapePlan.model.TripPlan;
+import com.example.escapePlan.dto.userPlanDto.PlanDto;
+import com.example.escapePlan.model.Plan;
 import com.example.escapePlan.repository.PlanRepository;
 import com.example.escapePlan.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -19,24 +19,24 @@ public class TripPlanDao {
     }
 
     @Transactional
-    public TripPlan addPlan(TripPlanDto dto) {
-        TripPlan plan = new TripPlan();
+    public Plan addPlan(PlanDto dto) {
+        Plan plan = new Plan();
         plan.copyFromDto(dto, userRepository.findById(dto.getUser_id()).orElseThrow());
         return plan;
     }
 
     @Transactional
-    public TripPlan updatePlan(Long id, TripPlanDto updatedPlan) {
-        TripPlan existingPlan = planRepository.findById(id).orElseThrow();
+    public Plan updatePlan(Long id, PlanDto updatedPlan) {
+        Plan existingPlan = planRepository.findById(id).orElseThrow();
         existingPlan.copyFromDto(updatedPlan,userRepository.findById(updatedPlan.getUser_id()).orElseThrow());
         return planRepository.save(existingPlan);
     }
 
-    public List<TripPlan> showAllPlans() {
+    public List<Plan> showAllPlans() {
         return planRepository.findAll();
     }
 
-    public TripPlan showPlan(Long id) {
+    public Plan showPlan(Long id) {
         return planRepository.findById(id).orElseThrow();
     }
 

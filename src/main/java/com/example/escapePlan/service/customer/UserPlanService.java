@@ -1,10 +1,10 @@
 package com.example.escapePlan.service.customer;
 
-import com.example.escapePlan.dto.userPlanDto.TripPlanDto;
-import com.example.escapePlan.model.TripPlan;
+import com.example.escapePlan.dto.userPlanDto.PlanDto;
+import com.example.escapePlan.dto.userPlanDto.PlanWithIdDto;
+import com.example.escapePlan.model.Plan;
 import com.example.escapePlan.repository.PlanRepository;
 import com.example.escapePlan.repository.UserRepository;
-import com.example.escapePlan.utills.PlanStatus;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -22,42 +22,28 @@ public class UserPlanService {
         this.userRepository = userRepository;
     }
 
-    public TripPlanDto showPlan(Long id){
-        TripPlan tripPlan = planRepository.findById(id).orElseThrow();
-        return tripPlan.createDto();
+    public PlanDto showPlan(Long id){
+        Plan plan = planRepository.findById(id).orElseThrow();
+        return plan.createDto();
     }
 
-    public List<TripPlanDto> showAllPlans(Long id){
-        List<TripPlan> tripPlan = planRepository.findAllByUser(userRepository.findById(id).orElseThrow());
-        return tripPlan.stream().map(TripPlan::createDto).toList();
+    public List<PlanDto> showAllPlans(Long id){
+        List<Plan> plan = planRepository.findAllByUser(userRepository.findById(id).orElseThrow());
+        return plan.stream().map(Plan::createDto).toList();
     }
 
-    public TripPlanDto addPlan(Long id, TripPlanDto tripPlanDto){
-        TripPlan tripPlan = new TripPlan();
-        tripPlan.copyFromDto(tripPlanDto, userRepository.findById(id).orElseThrow());
-        planRepository.save(tripPlan);
-        return tripPlanDto;
+    public PlanDto addPlan(PlanDto dto){
+        Plan plan = new Plan();
+        plan.copyFromDto(dto, userRepository.findById(dto.getUser_id()).orElseThrow());
+        planRepository.save(plan);
+        return dto;
     }
 
-    public String updateDesc(Long id, String desc){
-        TripPlan tripPlan = planRepository.findById(id).orElseThrow();
-        tripPlan.setDescription(desc);
-        planRepository.save(tripPlan);
-        return desc;
-    }
-
-    public String updateName(Long id, String name){
-        TripPlan tripPlan = planRepository.findById(id).orElseThrow();
-        tripPlan.setName(name);
-        planRepository.save(tripPlan);
-        return name;
-    }
-
-    public PlanStatus updateStatus(Long id, PlanStatus status){
-        TripPlan tripPlan = planRepository.findById(id).orElseThrow();
-        tripPlan.setStatus(status);
-        planRepository.save(tripPlan);
-        return status;
+    public PlanWithIdDto updatePlan(PlanWithIdDto dto){
+        Plan plan = planRepository.findById(dto.getId()).orElseThrow();
+        plan.copyFromDto(dto, userRepository.findById(dto.getUser_id()).orElseThrow());
+        planRepository.save(plan);
+        return dto;
     }
 
     public void deletePlan(Long id){

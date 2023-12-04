@@ -1,8 +1,8 @@
 package com.example.escapePlan.api.admin;
 
-import com.example.escapePlan.dto.userPlanDto.TripPlanDto;
-import com.example.escapePlan.model.TripPlan;
-import com.example.escapePlan.service.TripPlanService;
+import com.example.escapePlan.dto.userPlanDto.PlanDto;
+import com.example.escapePlan.model.Plan;
+import com.example.escapePlan.service.admin.PlanService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,25 +10,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/trips")
 public class TripPlanController {
-    private final TripPlanService service;
+    private final PlanService service;
 
-    public TripPlanController(TripPlanService service) {
+    public TripPlanController(PlanService service) {
         this.service = service;
     }
     @PostMapping
-    public TripPlan addPlan(@RequestBody TripPlanDto plan){
+    public Plan addPlan(@RequestBody PlanDto plan){
         return service.addTrip(plan);
     }
     @PatchMapping("/{id}")
-    public TripPlan updatePlan(@PathVariable Long id, @RequestBody TripPlanDto plan){
+    public Plan updatePlan(@PathVariable Long id, @RequestBody PlanDto plan){
         return service.updateTrip(id,plan);
     }
     @GetMapping("/{id}")
-    public TripPlan showPlan(@PathVariable Long id){
+    public Plan showPlan(@PathVariable Long id){
         return service.showTrip(id);
     }
     @GetMapping
-    public List<TripPlan> showAllPlans(){
+    public List<Plan> showAllPlans(){
         return service.showAllTrips();
     }
     @DeleteMapping("/{id}")

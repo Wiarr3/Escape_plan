@@ -1,8 +1,7 @@
-package com.example.escapePlan.service;
+package com.example.escapePlan.service.admin;
 
 import com.example.escapePlan.dao.UserDao;
-import com.example.escapePlan.dto.UserDto;
-import com.example.escapePlan.model.Role;
+import com.example.escapePlan.dto.userAccountDto.UserDto;
 import com.example.escapePlan.model.User;
 import com.example.escapePlan.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,9 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {

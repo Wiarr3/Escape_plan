@@ -1,35 +1,35 @@
-package com.example.escapePlan.service;
+package com.example.escapePlan.service.admin;
 
 import com.example.escapePlan.dao.TripPlanDao;
-import com.example.escapePlan.dto.userPlanDto.TripPlanDto;
-import com.example.escapePlan.model.TripPlan;
+import com.example.escapePlan.dto.userPlanDto.PlanDto;
+import com.example.escapePlan.model.Plan;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class TripPlanServiceImpl implements TripPlanService{
+public class PlanServiceImpl implements PlanService {
     private final TripPlanDao tripPlanDao;
-    public TripPlanServiceImpl(TripPlanDao tripPlanDao){
+    public PlanServiceImpl(TripPlanDao tripPlanDao){
         this.tripPlanDao = tripPlanDao;
     }
 
     @Override
-    public TripPlan addTrip(TripPlanDto dto) {
+    public Plan addTrip(PlanDto dto) {
         return tripPlanDao.addPlan(dto);
     }
 
     @Override
-    public TripPlan updateTrip(Long id, TripPlanDto dto) {
+    public Plan updateTrip(Long id, PlanDto dto) {
         return tripPlanDao.updatePlan(id,dto);
     }
 
     @Override
-    public TripPlan showTrip(Long id) {
+    public Plan showTrip(Long id) {
         return tripPlanDao.showPlan(id);
     }
 
     @Override
-    public List<TripPlan> showAllTrips() {
+    public List<Plan> showAllTrips() {
         return tripPlanDao.showAllPlans();
     }
 

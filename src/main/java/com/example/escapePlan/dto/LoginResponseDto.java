@@ -1,5 +1,6 @@
 package com.example.escapePlan.dto;
 
+import com.example.escapePlan.dto.userAccountDto.UserDto;
 import com.example.escapePlan.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +16,7 @@ public class LoginResponseDto {
     private String jwt;
 
     public LoginResponseDto(User user, String jwt){
-        userDto = new UserDto(user.getEmail(),user.getUsername(),user.getPassword(),user.getAddress());
+        userDto = new UserDto(user.getEmail(),user.getUsername(),user.getPassword());
         this.jwt = jwt;
     }
 

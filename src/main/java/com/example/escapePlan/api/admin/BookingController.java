@@ -1,8 +1,8 @@
 package com.example.escapePlan.api.admin;
 
-import com.example.escapePlan.dto.BookingOptionDto;
-import com.example.escapePlan.model.BookingOption;
-import com.example.escapePlan.service.BookingOptionService;
+import com.example.escapePlan.dto.userBookingDto.BookingDto;
+import com.example.escapePlan.model.Booking;
+import com.example.escapePlan.service.admin.BookingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,25 +10,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
-    private final BookingOptionService service;
+    private final BookingService service;
 
-    public BookingController(BookingOptionService service){
+    public BookingController(BookingService service){
         this.service = service;
     }
     @PostMapping
-    public BookingOption addOption(@RequestBody BookingOptionDto optionDto){
+    public Booking addOption(@RequestBody BookingDto optionDto){
         return service.addOption(optionDto);
     }
     @PatchMapping("/{id}")
-    public BookingOption updateOption(@PathVariable Long id, @RequestBody BookingOptionDto optionDto){
+    public Booking updateOption(@PathVariable Long id, @RequestBody BookingDto optionDto){
         return service.updateOption(id, optionDto);
     }
     @GetMapping("/{id}")
-    public BookingOption showOption(@PathVariable Long id){
+    public Booking showOption(@PathVariable Long id){
         return service.showOption(id);
     }
     @GetMapping
-    public List<BookingOption> showAllOptions(){
+    public List<Booking> showAllOptions(){
         return service.showAllOptions();
     }
     @DeleteMapping("/{id}")

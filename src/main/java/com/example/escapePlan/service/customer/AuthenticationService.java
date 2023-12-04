@@ -1,22 +1,20 @@
-package com.example.escapePlan.service;
+package com.example.escapePlan.service.customer;
 
 import com.example.escapePlan.dto.LoginResponseDto;
-import com.example.escapePlan.dto.UserDto;
+import com.example.escapePlan.dto.userAccountDto.UserDto;
 import com.example.escapePlan.model.Role;
 import com.example.escapePlan.model.User;
 import com.example.escapePlan.repository.RoleRepository;
 import com.example.escapePlan.repository.UserRepository;
+import com.example.escapePlan.service.TokenService;
 import jakarta.transaction.Transactional;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.naming.AuthenticationException;
-import java.lang.invoke.WrongMethodTypeException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,13 +37,13 @@ public class AuthenticationService {
         this.tokenService = tokenService;
     }
 
-    public User registerUser(String email, String username, String password, String address) {
+    public User registerUser(String email, String username, String password) {
         if (userRepository.findByUsername(username).isPresent()) return null;
         String encodedPassword = encoder.encode(password);
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByAuthority("USER").get();
         roles.add(userRole);
-        User user = new User(email, username, encodedPassword, address);
+        User user = new User(email, username, encodedPassword);
         user.setAuthorities(roles);
         return userRepository.save(user);
     }
@@ -74,6 +72,14 @@ public class AuthenticationService {
             return user.getId();
         } else
             throw new IllegalStateException();
+    }
+
+    public Long getIdByUsername(String username){
+        if(userRepository.findByUsername(username).isPresent())
+            return userRepository.findByUsername(username).get().getId();
+        else
+            //do zmiany
+            throw new RuntimeException();
     }
 
 

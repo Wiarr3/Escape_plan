@@ -1,6 +1,5 @@
 package com.example.escapePlan.service.customer;
 
-import com.example.escapePlan.dto.userAccountDto.UpdateAddressDto;
 import com.example.escapePlan.dto.userAccountDto.UpdateEmailDto;
 import com.example.escapePlan.dto.userAccountDto.UpdatePasswordDto;
 import com.example.escapePlan.model.User;
@@ -32,17 +31,7 @@ public class UserAccountService {
             throw new IllegalStateException();
     }
 
-    public UpdateAddressDto changeAddress(Long id, UpdateAddressDto updateAddressDto){
-        User user = userRepository.findById(id).orElseThrow();
-        String password = updateAddressDto.getPassword();
-        if(passwordEncoder.matches(password,user.getPassword())){
-            user.setAddress(updateAddressDto.getAddress());
-            userRepository.save(user);
-            return updateAddressDto;
-        }
-        else
-            throw new IllegalStateException();
-    }
+
     public UpdateEmailDto changeEmail(Long id, UpdateEmailDto updateEmailDto){
         User user = userRepository.findById(id).orElseThrow();
         String password = updateEmailDto.getPassword();
